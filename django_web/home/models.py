@@ -9,7 +9,8 @@ class User(AbstractUser):
 
     Username, password and email are required. Other fields are optional.
     """
-    invite_code = models.CharField(max_length=20, blank=True)
+    # invite_code = models.CharField(max_length=20, blank=True)
+
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
@@ -17,6 +18,6 @@ class User(AbstractUser):
 
 class InviteCode(models.Model):
     # user = models.ForeignKey(User, on_delete="CASCADE")
-    invite_code = models.CharField(max_length=20, null=False, primary_key=True)
+    # invite_code = models.CharField(max_length=20, null=False, primary_key=True)
     # invite_code_val = models.ForeignKey(to="User", to_field="invite_code", on_delete="")
     group_name = models.CharField(max_length=20, null=True)
