@@ -55,5 +55,5 @@ django的总控制目录，setting.py，里面进行总体设置
 | dis_name | disease_name疾病名字 | 此项目中使用艾滋病与HIV |
 | case_num | case_number发病人数 | —— |
 | death_num | death_number死亡人数 | —— |
-| ici_rate | 发病率 | —— |
-| mort_rate | 死亡率 | —— |
+| ici_rate | incidence_rate发病率 | —— |
+| mort_rate | mortality_rate死亡率 | —— |
