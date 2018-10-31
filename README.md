@@ -1,4 +1,6 @@
 
+文件总目录
+
 <!-- TOC -->
 
 - [1. disease_dashboard](#1-disease_dashboard)
@@ -16,10 +18,11 @@
 
 <!-- /TOC -->
 
-共享杯仪表盘艾迪宝系统简介
+共享杯仪表盘艾迪宝系统简介  
 这是一个传染病药品仪表板系统，使用的技术栈为django,postgre,D3，ledflet
 部署网址为：  
-源码保存在海宇技术组的github上，目前由技术组负责维护和更新
+源码保存在海宇技术组的github上  
+目前由技术组负责维护和更新
 # 1. disease_dashboard
 disease_dashboard为整个文件目录
 ## 1.1. django_web
