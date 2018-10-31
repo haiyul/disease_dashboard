@@ -39,7 +39,8 @@ django的总控制目录，setting.py，里面进行总体设置
 # gen_dem_data
 因为涉及数据保密和格式问题，这里使用了一个demo数据生成器，一个生成demo数据的工具，用r语言写成
 ## ReportZoneMonth16_01.csv
-一个原始数据，取自网站2016年1月的艾滋病与hiv的发病数据，为0的部分替换为1，避免null的错误
+一个原始数据，取自网站2016年1月的艾滋病与hiv的发病数据，为0的部分替换为1，避免null的错误  
+另外根据发病率和发病人数计算了一个all_pop字段，为各省与全国的人口数量，为了R脚本中的计算
 ## gen_test_data.R
 一个r语言的脚本，根据取自网站2016年1月的原始数据，根据这个月数据的方差与每个省的取值，随机生成其他月份的数据
 ## demo_hiv_aids_05_15.csv
@@ -51,7 +52,8 @@ django的总控制目录，setting.py，里面进行总体设置
 “ |
 | year | 年份2005-2015 | —— |
 | month | 月份1-12 | 个位的月份前面没有0 |
-| dis_name | 短文本 | 中等文本 |
-| case_num | 中等文本 | 稍微长一点的文本 |
-| ici_rate | 短文本 | 中等文本 |
-| mort_rate | 短文本 | 中等文本 |
+| dis_name | disease_name疾病名字 | 此项目中使用艾滋病与HIV |
+| case_num | case_number发病人数 | —— |
+| death_num | death_number死亡人数 | —— |
+| ici_rate | 发病率 | —— |
+| mort_rate | 死亡率 | —— |
