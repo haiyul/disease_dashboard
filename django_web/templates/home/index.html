@@ -1,184 +1,79 @@
-{% extends "home/base.html" %}
+{% extends "home/logged.html" %}
 {% load static %}
-{% block tittle %}
-    艾迪宝-传染病仪表盘系统
-{% endblock %}
-
-{% block header_all %}
-    {#引用bootstrap#}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-{% endblock %}
-
-{% block body_notlog %}
-    <nav class="navbar navbar-expand-lg navbar-light" style="background: #D4D9E8">
-        {#放在container里面,这样左右有空格#}
-        <dvi class="container">
-            {#logo#}
-            <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="#">
-                    <img src="{% static " home/img/1_Primary_logo_on_transparent_cliped.png" %}" width="40"
-                         height="40"
-                         alt="">
-                </a>
-            </nav>
-            {#首页#}
-            <a class="navbar-brand" href="#">艾迪宝系统</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                {#左边的1个要素#}
-                <ul class="navbar-nav mr-auto">
-                    {#margin-right: auto是mr-auto的意思，这样左边和右边之间就被顶开了#}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">首页<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-                {#右边的搜索框#}
-                <div class="form-inline my-lg-0 ">
-                    {#my指的是在y轴方向，即margin的上边距和下边距设定一个值。my-2，山下2，my-lg是对大屏幕的#}
-                    <div class="mx-auto order-0">
-                        <table cellspacing="0" role="presentation">
-                            <tbody>
-                            <tr>
-                                <td><label for="id_username2">用户名:</label></td>
-                                <td><label for="id_password2">密码:</label></td>
-                            </tr>
-                            <tr>
-                                <form class="form" action="#" method="post">
-                                    {% csrf_token %}
-                                    <td><input type="text" class="form-control mr-3" name="username2"
-                                               id="id_username_logi"
-                                               tabindex="1"></td>
-                                    {#tabindex是三个东西之间tab键导航切换用的#}
-
-                                    <td><input type="password" class="form-control" name="password3"
-                                               id="id_password_logi"
-                                               tabindex="2"></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-info btn-block">登录</button>
-                                    </td>
-                                </form>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="login_form_label_field">
-                                    <div>
-                                        <span><a href="#">忘记密码？</a></span>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </dvi>
-    </nav>
-
-    <div class="container-fluid custom_bg">
-        <div class="container ">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h4>传染病疾病数据可视化demo</h4>
-                    <img src="{% static 'home/img/problemas-de-saude-ldc.svg' %}" class="img-rounded">
-                </div>
-                <div class="col-lg-6">
-                    <div class="container h-100">
-                        {#h100是高度满的#}
-                        <div class="card fat">
-                            <div class="card-body">
-                                <h1 class="card-title">注册</h1>
-                                <h6 class="card-title">如果您有注册码，请输入注册</h6>
-
-                                <form class="form" action="{% url 'home:register' %}" method="POST">
-                                    {% csrf_token %}
-                                    {% if form.errors %}
-                                        显示模态组
-                                        <script>
-                                            $(function () {
-                                                $('#myModal').modal('show')
-                                            });
-                                        </script>
-                                        <!-- 模态框（Modal） -->
-                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                                             aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-hidden="true">
-                                                            &times;
-                                                        </button>
-                                                        <h4 class="modal-title" id="myModalLabel">
-                                                            模态框（Modal）标题
-                                                        </h4>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        {{ field }}
-                                                        {{ field.label_tag }}
-                                                        {{ field.errors }}
-                                                        <p class="help text-small text-muted">{{ form.errors }}</p>
-                                                        {% if field.help_text %}
-                                                            <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
-                                                        {% endif %}
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary"
-                                                                data-dismiss="modal">关闭
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
+{% block col-lg-6 %}
+    <div class="col-lg-6">
+        <div class="container h-100">
+        <h4>您还没有登陆，请先登陆</h4>
+            {#h100是高度满的#}
+            <div class="card fat">
+                <div class="card-body">
+                    <h1 class="card-title">注册</h1>
+                    <h6 class="card-title">如果您有注册码，请输入注册</h6>
+                    <form class="form" action="{% url 'home:register' %}" method="POST">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <script>
+                                $(function () {
+                                    $('#myModal').modal('show')
+                                });
+                            </script>
+                            <!-- 模态框（Modal） -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                输入错误
+                                            </h4>
                                         </div>
-                                    {% endif %}
-                                    <div class="form-group">
-                                        <label for="username1">用户名:</label>
-                                        <input type="text" class="form-control" name="username" value="{{ username }}"
-                                               maxlength="150"
-                                               autofocus
-                                               id="username"/>
+                                        <div class="modal-body">
 
-                                        <label for="id_email">电子邮件地址:</label>
-                                        <input type="email" class="form-control" name="email" value="{{ email }}"
-                                               maxlength="254"
-                                               id="email"/>
+                                            <p class="help text-small text-muted">{{ form.errors }}</p>
 
-                                        <label for="password1">密码:</label>
-                                        <input type="password" class="form-control" name="password1"
-                                               id="password1"/>
-
-                                        <label for="password2">确认密码:</label>
-                                        <input type="password" class="form-control" name="password2"
-                                               id="password1"/>
-
-
-                                        <label for="invite_code">输入注册码:</label>
-                                        <input type="text" class="form-control" name="invite_code" maxlength="20"
-                                               value="{{ invite_code }}"
-                                               id="invite_code"/>
-
-                                        <p></p>
-                                        <button type="submit" class="btn btn-info register btn-block">注册</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                    data-dismiss="modal">关闭并重新填写
+                                            </button>
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="username1">用户名:</label>
+                            <input type="text" class="form-control" name="username" value="{{ username }}"
+                                   maxlength="150"
+                                   autofocus
+                                   id="username"/>
+
+                            <label for="id_email">电子邮件地址:</label>
+                            <input type="email" class="form-control" name="email" value="{{ email }}"
+                                   maxlength="254"
+                                   id="email"/>
+
+                            <label for="password1">密码:</label>
+                            <input type="password" class="form-control" name="password1"
+                                   id="password1"/>
+
+                            <label for="password2">确认密码:</label>
+                            <input type="password" class="form-control" name="password2"
+                                   id="password1"/>
+
+
+                            <label for="invite_code_input">输入注册码:</label>
+                            <input type="text" class="form-control" name="invite_code_input" maxlength="20"
+                                   value="{{ invite_code_input }}"
+                                   id="invite_code_input"/>
+
+                            <input type="hidden" class="form-control" name="inviteCode"
+                                   id="inviteCode" , value="1"/>
+
+                            <p></p>
+                            <button type="submit" class="btn btn-info register btn-block">注册</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

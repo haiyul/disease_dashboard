@@ -1,0 +1,99 @@
+{% extends "home/not_log.html" %}
+{% load static %}
+{% block tittle %}
+    艾迪宝-传染病仪表盘系统
+{% endblock %}
+
+{% block header_all %}
+    {#引用bootstrap#}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body_login %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #D4D9E8">
+        {#放在container里面,这样左右有空格#}
+        <dvi class="container">
+            {#logo#}
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="{% url 'home:home' %}">
+                    <img src="{% static 'home/img/1_Primary_logo_on_transparent_cliped.png' %}" width="40"
+                         height="40"
+                         alt="">
+                </a>
+            </nav>
+            {#首页#}
+            <a class="navbar-brand" href="{% url 'home:home' %}">艾迪宝系统</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {#左边的1个要素#}
+                <ul class="navbar-nav mr-auto">
+                    {#margin-right: auto是mr-auto的意思，这样左边和右边之间就被顶开了#}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home:home' %}">首页<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav my-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'logout' %}">注销登录<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+            </div>
+        </dvi>
+    </nav>
+
+    <div class="container-fluid custom_bg">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="container">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h4>传染病疾病数据可视化仪表盘系统</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="container">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h4>传染病疾病数据可视化仪表盘系统</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="container">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h4>传染病疾病数据可视化仪表盘系统</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
+

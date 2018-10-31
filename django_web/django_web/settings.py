@@ -127,6 +127,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-
+# logout跳转到首页，不然会到admin和account
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'home.User'
