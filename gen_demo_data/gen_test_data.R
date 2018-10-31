@@ -1,0 +1,110 @@
+rm(list = ls())
+setwd("C:/WorKDirs/SynologyDrive/wordirs_synDrive/181027_仪表盘/模拟原始数据")
+list.files()
+
+library(data.table)
+
+data_org <-  fread("ReportZoneMonth16_01.csv")
+
+#生成随机数的函数
+set.seed(1319)
+gen_random <- function(mean, sd) {
+    x <- -1
+    while (x < 0) {
+        x <-
+            round(rnorm(1, mean = mean, sd = sd / 5),
+                  0)
+        # print(x)
+    }
+    return(x)
+}
+
+gen_out_dt <- function(year_out, month_out, dis_name_out) {
+    data_org_n_quanguo_aids = data_org[area_name != "全    国" &
+                                           dis_name == dis_name_out,]
+    sd_case_num_n_quanguo_aids = sd(data_org_n_quanguo_aids$case_num, na.rm = T)
+    sd_death_num_n_quanguo_aids = sd(data_org_n_quanguo_aids$death_num, na.rm = T)
+    
+    case_num <- c()
+    for (i in data_org_n_quanguo_aids$case_num) {
+        case_num <- c(case_num,
+                      gen_random(i, sd_case_num_n_quanguo_aids))
+    }
+    death_num <- c()
+    for (i in data_org_n_quanguo_aids$death_num) {
+        death_num <-
+            c(death_num,
+              gen_random(i, sd_death_num_n_quanguo_aids))
+    }
+    
+    data_out_quanguo_aids <-
+        as.data.frame(cbind(case_num, death_num))
+    data_out_quanguo_aids$year <- year_out
+    data_out_quanguo_aids$month <- month_out
+    
+    data_out_quanguo_aids$area_name <-
+        data_org_n_quanguo_aids$area_name
+    data_out_quanguo_aids$dis_name <- dis_name_out
+    data_out_quanguo_aids$all_pop <-
+        data_org_n_quanguo_aids$all_pop
+    
+    arow <- data_out_quanguo_aids[1, ]
+    arow$case_num <- sum(data_out_quanguo_aids$case_num)
+    arow$death_num <- sum(data_out_quanguo_aids$death_num)
+    arow$area_name <- "全    国"
+    arow$all_pop <- sum(data_out_quanguo_aids$all_pop)
+    data_out_quanguo_aids <- rbind(arow, data_out_quanguo_aids)
+    data_out_quanguo_aids$ici_rate <-
+        data_out_quanguo_aids$case_num / data_out_quanguo_aids$all_pop
+    data_out_quanguo_aids$mort_rate <-
+        data_out_quanguo_aids$death_num / data_out_quanguo_aids$all_pop
+    
+    col_li <- colnames(data_org_n_quanguo_aids)
+    data_out_quanguo_aids <-
+        as.data.table(data_out_quanguo_aids)
+    data_out_quanguo_aids <-
+        data_out_quanguo_aids[, c(
+            "area_name",
+            "year",
+            "month",
+            "dis_name",
+            "case_num",
+            "death_num",
+            "ici_rate",
+            "mort_rate"
+        )]
+    
+    print(sum(data_out_quanguo_aids$case_num) / 2)
+    print(sum(data_org_n_quanguo_aids$case_num))
+    
+    return(data_out_quanguo_aids)
+}
+
+gen_all_dt <- function(year_out, month_out){
+    dis_name_out <- '艾滋病'
+    out1 <- gen_out_dt(year_out, month_out, dis_name_out)
+    dis_name_out <- 'HIV'
+    out2 <- gen_out_dt(year_out, month_out, dis_name_out)
+    out_dtx <- rbind(out1, out2)
+    return(out_dtx)
+}
+
+year_out <- 2016
+month_out <- 4
+
+# gen_all_dt(year_out, month_out)
+
+res <- data.frame()
+
+for(year_out in c(2005:2015)){
+    for(month_out in c(1:12)){
+        temp <- gen_all_dt(year_out, month_out)
+        res <- rbind(res, temp)
+    }
+}
+
+write.csv(res, 'demo_hiv_aids_05_15.csv', row.names = F)
+
+
+
+
