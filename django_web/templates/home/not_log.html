@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="bookmark" type="image/x-icon" href="{% static "home/img/1_Primary_logo_on_transparent_cliped.png" %}"/>
+    <link rel="shortcut icon" href="{% static "home/img/1_Primary_logo_on_transparent_cliped.png" %}">
+    <title>
+        {% block tittle %}
+            模板-会被覆盖
+        {% endblock %}
+    </title>
+    <style>
+        {#页脚的css#}
+        .footer {
+        {#position: absolute;#}{#bottom: 0;#} width: 100%;
+            /* Set the fixed height of the footer here */
+            margin-bottom: 0px;
+            margin-top: 0px;
+            background-color: #f5f5f5;
+        }
+
+        .footer > p {
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+
+        {#navbar内部table内部的文字#}
+        nav label {
+            float: left;
+        }
+
+        {#页面中部contain的背景#}
+        .custom_bg {
+            background-image: linear-gradient(to bottom, #FAFBFD, #D3D8E8);
+        }
+    </style>
+    {#header部分的引用#}
+    {% block header_all %}
+    {% endblock %}
+    {#pc版和移动版的css分开#}
+    {% block pc_css %}
+    {% endblock %}
+    {% block mobile_css %}
+    {% endblock %}
+
+</head>
+
+<body>
+{#登陆页面和非登陆页面分开#}
+{% if user.is_authenticated %}
+    {% block body_login %}
+    {% endblock %}
+{% else %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: #D4D9E8">
+        {#放在container里面,这样左右有空格#}
+        <dvi class="container">
+            {#logo#}
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'home/img/1_Primary_logo_on_transparent_cliped.png' %}" width="40"
+                         height="40"
+                         alt="">
+                </a>
+            </nav>
+            {#首页#}
+            <a class="navbar-brand" href="#">艾迪宝系统</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {#左边的1个要素#}
+                <ul class="navbar-nav mr-auto">
+                    {#margin-right: auto是mr-auto的意思，这样左边和右边之间就被顶开了#}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">首页<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                {#右边的搜索框#}
+                <div class="form-inline my-lg-0 ">
+                    {#my指的是在y轴方向，即margin的上边距和下边距设定一个值。my-2，山下2，my-lg是对大屏幕的#}
+                    <div class="mx-auto order-0">
+                        <table cellspacing="0" role="presentation">
+                            <tbody>
+                            <tr>
+                                <td><label for="id_username2">用户名:</label></td>
+                                <td><label for="id_password2">密码:</label></td>
+                            </tr>
+                            <tr>
+                                <form class="form" action="{% url 'login' %}" method="post">
+                                    {% csrf_token %}
+                                    <td><input type="text" class="form-control mr-3" name="username"
+                                               id="id_username2"
+                                               tabindex="1"></td>
+                                    {#tabindex是三个东西之间tab键导航切换用的#}
+
+                                    <td><input type="password" class="form-control" name="password"
+                                               id="id_password2"
+                                               tabindex="2"></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info btn-block">登录</button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="login_form_label_field">
+                                    <div>
+                                        <span><a href="#">忘记密码？</a></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </dvi>
+    </nav>
+    <div class="container-fluid custom_bg">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="container">
+                        <h4>传染病疾病数据可视化仪表盘系统</h4>
+                        <img src="{% static 'home/img/Disease.jpg' %}" class="img-rounded h-100">
+                    </div>
+                </div>
+                {% block col-lg-6 %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+</body>
+
+<footer class="footer">
+    <div class="container text-center">
+        <span>网站问题请邮件至：ma.zhenkai@foxmail.com</span>
+        <span>Copyright © 2018 马振凯</span>
+    </div>
+</footer>
+</html>

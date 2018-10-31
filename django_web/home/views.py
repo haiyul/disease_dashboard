@@ -18,8 +18,18 @@ def register(request):
 
         # 验证数据的合法性
         if form.is_valid():
+            #设定对应的对象
+            invite_code_input = form.cleaned_data["invite_code_input"]
+            form.cleaned_data["inviteCode"] = InviteCode.objects.filter(invite_code=invite_code_input)
+
             # 如果提交数据合法，调用表单的 save 方法将用户数据保存到数据库
             form.save()
+
+            # 然后登陆这个东西
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
 
             # 注册成功，跳转回首页
             return redirect('/')

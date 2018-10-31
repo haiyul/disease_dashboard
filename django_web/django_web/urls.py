@@ -21,8 +21,10 @@ from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^home/', include('home.urls')),
     # 首页
-    url(r'^$', views.index, name='home')
+    url(r'^home/', include('home.urls')),
+    # 将 auth 应用中的 urls 模块包含进来
+    url(r'^home/', include('django.contrib.auth.urls')),
 
+    url(r'^$', views.index, name='home')
 ]
