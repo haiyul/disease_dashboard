@@ -16,13 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from dashing.utils import router
+
 from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^home/', include('home.urls')),
     # 首页
-    url(r'^$', views.index, name='index')
-
+    url(r'^$', views.index, name='home')
 
 ]
