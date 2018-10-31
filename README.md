@@ -9,10 +9,10 @@
         - [1.1.4. static](#114-static)
         - [1.1.5. templates](#115-templates)
         - [1.1.6. data_normal](#116-data_normal)
-- [gen_dem_data](#gen_dem_data)
-    - [ReportZoneMonth16_01.csv](#reportzonemonth16_01csv)
-    - [gen_test_data.R](#gen_test_datar)
-    - [demo_hiv_aids_05_15.csv](#demo_hiv_aids_05_15csv)
+- [2. gen_dem_data](#2-gen_dem_data)
+    - [2.1. ReportZoneMonth16_01.csv](#21-reportzonemonth16_01csv)
+    - [2.2. gen_test_data.R](#22-gen_test_datar)
+    - [2.3. demo_hiv_aids_05_15.csv](#23-demo_hiv_aids_05_15csv)
 
 <!-- /TOC -->
 
@@ -36,14 +36,14 @@ django的总控制目录，setting.py，里面进行总体设置
 模板文件，存储html模板，内部文件树与app的命名空间一致
 ### 1.1.6. data_normal
 储存网站需要用的一些普通数据，如省列表，病名列表
-# gen_dem_data
+# 2. gen_dem_data
 因为涉及数据保密和格式问题，这里使用了一个demo数据生成器，一个生成demo数据的工具，用r语言写成
-## ReportZoneMonth16_01.csv
+## 2.1. ReportZoneMonth16_01.csv
 一个原始数据，取自网站2016年1月的艾滋病与hiv的发病数据，为0的部分替换为1，避免null的错误  
 另外根据发病率和发病人数计算了一个all_pop字段，为各省与全国的人口数量，为了R脚本中的计算
-## gen_test_data.R
+## 2.2. gen_test_data.R
 一个r语言的脚本，根据取自网站2016年1月的原始数据，根据这个月数据的方差与每个省的取值，随机生成其他月份的数据
-## demo_hiv_aids_05_15.csv
+## 2.3. demo_hiv_aids_05_15.csv
 最后生成的数据demo，有2005年-2015年各个月的艾滋病与hiv的发病数据，涉及的字段为
 
 | 变量名 | 标签 | 备注 |
