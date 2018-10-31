@@ -3,41 +3,42 @@
 
 <!-- TOC -->
 
-- [1. disease_dashboard](#1-disease_dashboard)
+- [1. django_web](#1-django_web)
     - [1.1. django_web](#11-django_web)
-        - [1.1.1. django_web](#111-django_web)
-        - [1.1.2. dis_dashboard](#112-dis_dashboard)
-        - [1.1.3. home](#113-home)
-        - [1.1.4. static](#114-static)
-        - [1.1.5. templates](#115-templates)
-        - [1.1.6. data_normal](#116-data_normal)
+    - [1.2. dis_dashboard](#12-dis_dashboard)
+    - [1.3. home](#13-home)
+    - [1.4. static](#14-static)
+    - [1.5. templates](#15-templates)
+    - [1.6. data_normal](#16-data_normal)
 - [2. gen_dem_data](#2-gen_dem_data)
     - [2.1. ReportZoneMonth16_01.csv](#21-reportzonemonth16_01csv)
     - [2.2. gen_test_data.R](#22-gen_test_datar)
     - [2.3. demo_hiv_aids_05_15.csv](#23-demo_hiv_aids_05_15csv)
+    - [2.4. demo_hiv_aids_05_15.csv](#24-demo_hiv_aids_05_15csv)
 
 <!-- /TOC -->
 
 共享杯仪表盘艾迪宝系统简介  
+disease_dashboard为整个文件目录
 这是一个传染病药品仪表板系统，使用的技术栈为django,postgre,D3，ledflet
 部署网址为：  
 源码保存在海宇技术组的github上  
 目前由技术组负责维护和更新
-# 1. disease_dashboard
-disease_dashboard为整个文件目录
-## 1.1. django_web
+
+
+# 1. django_web
 为一个标准的django网页目录，通过mvc的方式控制网站
-### 1.1.1. django_web
+## 1.1. django_web
 django的总控制目录，setting.py，里面进行总体设置
-### 1.1.2. dis_dashboard
+## 1.2. dis_dashboard
 仪表盘页面的app，可视化数据
-### 1.1.3. home
+## 1.3. home
 主页和控制页面app，负责注册、登陆和首页等内容
-### 1.1.4. static
+## 1.4. static
 静态文件，主要存储图片js与css，内部文件树与app的命名空间一致
-### 1.1.5. templates
+## 1.5. templates
 模板文件，存储html模板，内部文件树与app的命名空间一致
-### 1.1.6. data_normal
+## 1.6. data_normal
 储存网站需要用的一些普通数据，如省列表，病名列表
 # 2. gen_dem_data
 因为涉及数据保密和格式问题，这里使用了一个demo数据生成器，一个生成demo数据的工具，用r语言写成
@@ -59,3 +60,6 @@ django的总控制目录，setting.py，里面进行总体设置
 | death_num | death_number死亡人数 | —— |
 | ici_rate | incidence_rate发病率 | —— |
 | mort_rate | mortality_rate死亡率 | —— |
+
+## 2.4. demo_hiv_aids_05_15.csv
+模拟计算出来的数据，和数据库中的结构一致
