@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django.contrib.admin',
-    'import_export',
+    'rest_framework',
 
     'dis_dashboard',
     'home'
@@ -132,3 +132,8 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'home.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

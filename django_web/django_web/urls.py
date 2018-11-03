@@ -21,8 +21,8 @@ from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # 首页
     url(r'^home/', include('home.urls')),
+    url(r'^dis_dashboard/', include('dis_dashboard.urls')),
     # 将 auth 应用中的 urls 模块包含进来
     url(r'^home/', include('django.contrib.auth.urls')),
 
