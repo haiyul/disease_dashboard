@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'django.contrib.admin',
     'rest_framework',
+    'django_filters',
 
     'dis_dashboard',
     'home'
@@ -135,5 +136,6 @@ AUTH_USER_MODEL = 'home.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'PAGE_SIZE': 100
 }

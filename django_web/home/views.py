@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from dis_dashboard.models import *
 from django.contrib.auth import authenticate, login
 
 
 def index(request):
+    # queryset = AggTb.objects.filter(month__month_cn="二月").values("month", "month__month_cn")
+    # # queryset = MonthCode.month_set.all()
+    # for i in queryset:
+    #     print(i)
+    # print(queryset)
     return render(request, 'home/index.html')
 
 
@@ -18,7 +24,7 @@ def register(request):
 
         # 验证数据的合法性
         if form.is_valid():
-            #设定对应的对象
+            # 设定对应的对象
             invite_code_input = form.cleaned_data["invite_code_input"]
             form.cleaned_data["inviteCode"] = InviteCode.objects.filter(invite_code=invite_code_input)
 
