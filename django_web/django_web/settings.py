@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     'django.contrib.admin',
     'import_export',
 
@@ -81,8 +82,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'IDDB_db',
         'USER': 'postgres',
-        # 'HOST': '119.29.152.218',
-        'HOST': 'localhost',
+        'HOST': '119.29.152.218',
         'PASSWORD': 'tx180919'
     }
 }
