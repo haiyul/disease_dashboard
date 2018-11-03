@@ -4,7 +4,6 @@ from django.db import models
 class AggTb(models.Model):
     year = models.CharField(max_length=50)
     month = models.CharField(max_length=50)
-    # month = models.ForeignKey('MonthCode', to_field='month', on_delete="SET_NULL")
     reg_id = models.CharField(max_length=50)
     dis_id = models.CharField(max_length=50)
     agg_id = models.CharField(max_length=50)
@@ -39,6 +38,8 @@ class RegTb(models.Model):
     mort_rate = models.DecimalField(max_digits=10, decimal_places=4)
 
 
+
+
 class AggCode(models.Model):
     agg_id = models.CharField(max_length=50)
     ag_g = models.CharField(max_length=50)
@@ -55,7 +56,7 @@ class GdCode(models.Model):
 
 
 class MonthCode(models.Model):
-    month = models.CharField(max_length=50, unique=True)
+    month = models.CharField(max_length=50)
     month_cn = models.CharField(max_length=50)
 
 
