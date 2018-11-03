@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from dis_dashboard.models import *
 from django.contrib.auth import authenticate, login
 
 
 def index(request):
+    # ret = AggTb.objects.all().values('id', 'case_num', 'month__month_cn')
+    # for item in ret:
+    #     print(item['id'], item['case_num'], item['month__month_cn'])
     return render(request, 'home/index.html')
 
 
