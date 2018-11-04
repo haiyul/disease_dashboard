@@ -14,6 +14,7 @@ class AggTb(models.Model):
     mort_rate = models.DecimalField(max_digits=10, decimal_places=4)
 
 
+
 class ProTb(models.Model):
     year = models.CharField(max_length=50)
     month = models.ForeignKey("MonthCode", to_field="month", on_delete="SET_NULL")
@@ -40,6 +41,8 @@ class RegTb(models.Model):
 class AggCode(models.Model):
     agg_id = models.CharField(max_length=50, unique=True)
     ag_g = models.CharField(max_length=50)
+    ag_g_ctr = models.CharField(max_length=50, default="null")
+    ag_g_p5 = models.CharField(max_length=50, default="")
 
 
 class DisCode(models.Model):
@@ -65,5 +68,6 @@ class ProCode(models.Model):
 class RegCode(models.Model):
     reg_id = models.CharField(max_length=50, unique=True)
     reg_name = models.CharField(max_length=50)
+    reg_name_crt = models.CharField(max_length=50, default="null")
 
 
