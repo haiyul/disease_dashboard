@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from django.views.generic import RedirectView
 
 from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     url(r'^home/', include('home.urls')),
     url(r'^dis_dashboard/', include('dis_dashboard.urls')),
     # 将 auth 应用中的 urls 模块包含进来
     url(r'^home/', include('django.contrib.auth.urls')),
+    # 图标
+    url(r'^favicon\.ico$', RedirectView.as_view(url='static/home/img/1_Primary_logo_on_transparent_cliped.png')),
 
     url(r'^$', views.index, name='home')
 ]

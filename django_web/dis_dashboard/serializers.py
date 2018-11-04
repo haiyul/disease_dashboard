@@ -4,7 +4,6 @@ import django_filters
 
 
 # 年龄分组的表
-# class AggTbSerializer(serializers.HyperlinkedModelSerializer):
 class AggTbSerializer(serializers.ModelSerializer):
     month = serializers.CharField(source='month.month_cn')
     reg_name = serializers.CharField(source='reg_id.reg_name_crt')
@@ -29,4 +28,50 @@ class AggTbFilterSet(django_filters.FilterSet):
     class Meta:
         model = AggTb
         fields = ['year', 'month', 'reg_name', 'dis_name', 'ag_g_ctr', 'gender',
+                  'case_num', 'dea_num', 'inci_rate', 'mort_rate']
+
+
+# 职业分组的表
+class ProTbSerializer(serializers.ModelSerializer):
+    month = serializers.CharField(source='month.month_cn')
+    reg_name = serializers.CharField(source='reg_id.reg_name_crt')
+    dis_name = serializers.CharField(source='dis_id.dis_name')
+
+    class Meta:
+        model = ProTb
+        fields = ('year', 'month', 'reg_name', 'dis_name', 'pro_name',
+                  'case_num', 'dea_num', 'inci_rate', 'mort_rate')
+
+
+class ProTbFilterSet(django_filters.FilterSet):
+    month = django_filters.CharFilter(field_name='month__month_cn')
+    reg_name = django_filters.CharFilter(field_name='reg_id__reg_name_crt')
+    dis_name = django_filters.CharFilter(field_name='dis_id__dis_name')
+
+    class Meta:
+        model = ProTb
+        fields = ['year', 'month', 'reg_name', 'dis_name', 'pro_name',
+                  'case_num', 'dea_num', 'inci_rate', 'mort_rate']
+
+
+# 区域表
+class RegTbSerializer(serializers.ModelSerializer):
+    month = serializers.CharField(source='month.month_cn')
+    reg_name = serializers.CharField(source='reg_id.reg_name_crt')
+    dis_name = serializers.CharField(source='dis_id.dis_name')
+
+    class Meta:
+        model = RegTb
+        fields = ('year', 'month', 'reg_name', 'dis_name',
+                  'case_num', 'dea_num', 'inci_rate', 'mort_rate')
+
+
+class RegTbFilterSet(django_filters.FilterSet):
+    month = django_filters.CharFilter(field_name='month__month_cn')
+    reg_name = django_filters.CharFilter(field_name='reg_id__reg_name_crt')
+    dis_name = django_filters.CharFilter(field_name='dis_id__dis_name')
+
+    class Meta:
+        model = RegTb
+        fields = ['year', 'month', 'reg_name', 'dis_name',
                   'case_num', 'dea_num', 'inci_rate', 'mort_rate']

@@ -14,7 +14,6 @@ class AggTb(models.Model):
     mort_rate = models.DecimalField(max_digits=10, decimal_places=4)
 
 
-
 class ProTb(models.Model):
     year = models.CharField(max_length=50)
     month = models.ForeignKey("MonthCode", to_field="month", on_delete="SET_NULL")

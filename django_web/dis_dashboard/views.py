@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from rest_framework import viewsets, pagination
 # from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
@@ -10,6 +10,26 @@ from rest_framework_extensions.cache.mixins import CacheResponseMixin
 class AggTbViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = AggTb.objects.all()
     serializer_class = AggTbSerializer
-    pagination_class = None  # 区划信息不分页
+    # 取消最大页面数
+    # pagination_class = None
     filter_backends = (DjangoFilterBackend,)
     filter_class = AggTbFilterSet
+
+
+class ProTbViewSet(CacheResponseMixin, viewsets.ModelViewSet):
+    queryset = ProTb.objects.all()
+    serializer_class = ProTbSerializer
+    # 取消最大页面数
+    # pagination_class = None
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = ProTbFilterSet
+
+
+class RegTbViewSet(CacheResponseMixin, viewsets.ModelViewSet):
+    queryset = RegTb.objects.all()
+    serializer_class = RegTbSerializer
+    # 取消最大页面数
+    # pagination_class = None
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = RegTbFilterSet
+
