@@ -33,3 +33,11 @@ class RegTbViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_class = RegTbFilterSet
 
+
+class ProvinceBorderViewSet(CacheResponseMixin, viewsets.ModelViewSet):
+    queryset = ProvinceBorder.objects.all()
+    serializer_class = ProvinceBorderSerializer
+    # 取消最大页面数
+    # pagination_class = None
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = ProvinceBorderFilterSet
