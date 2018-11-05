@@ -67,3 +67,14 @@ class RegCode(models.Model):
     reg_name = models.CharField(max_length=50)
 
 
+class ProvinceBorder(models.Model):
+    name = models.CharField(max_length=24)
+    popname = models.CharField(max_length=24)
+    code = models.CharField(max_length=12)
+    type = models.BigIntegerField()
+    display = models.BigIntegerField()
+    x = models.FloatField()
+    y = models.FloatField()
+    py = models.CharField(max_length=50)
+    geom = models.PolygonField(srid=4326)
+    reg_id = models.CharField(max_length=50, default="")

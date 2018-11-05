@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'rest_framework',
     'django_filters',
+    'django.contrib.gis',
 
     'dis_dashboard',
     'home'

@@ -75,3 +75,15 @@ class RegTbFilterSet(django_filters.FilterSet):
         model = RegTb
         fields = ['year', 'month', 'reg_name', 'dis_name',
                   'case_num', 'dea_num', 'inci_rate', 'mort_rate']
+
+
+#geo全国地图api
+class ProvinceBorderSerializer(serializers.ModelSerializer):
+    month = serializers.CharField(source='month.month_cn')
+    reg_name = serializers.CharField(source='reg_id.reg_name_crt')
+    dis_name = serializers.CharField(source='dis_id.dis_name')
+
+    class Meta:
+        model = RegTb
+        fields = ('year', 'month', 'reg_name', 'dis_name',
+                  'case_num', 'dea_num', 'inci_rate', 'mort_rate')
