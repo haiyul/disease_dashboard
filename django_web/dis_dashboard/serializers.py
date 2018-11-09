@@ -77,18 +77,27 @@ class RegTbFilterSet(django_filters.FilterSet):
                   'case_num', 'dea_num', 'inci_rate', 'mort_rate']
 
 
-#geo全国地图api
-class ProvinceBorderSerializer(serializers.ModelSerializer):
-    reg_id = serializers.CharField(source='reg_id.reg_id')
+from rest_framework_gis import serializers
+from rest_framework.serializers import CharField, StringRelatedField
+
+
+# geo全国地图api
+class ProvinceBorderSerializer(serializers.GeoFeatureModelSerializer):
+    reg_id = CharField(source='reg_id.reg_id')
 
     class Meta:
         model = ProvinceBorder
-        fields = ("id", 'name', 'py', 'geom', 'reg_id')
+        geo_field = 'geom'
+        auto_bbox = True
+        # fields = ("id", 'name', 'py', 'geom', 'reg_id')
+        fields = ("id", 'name', 'geom', 'reg_id', 'reg_id_set')
 
 
 class ProvinceBorderFilterSet(django_filters.FilterSet):
+    # Filter可以用外键，但是前面不能
     reg_id = django_filters.CharFilter(field_name='reg_id__reg_id')
+    reg_id_not = django_filters.CharFilter(field_name='reg_id__reg_id', exclude=True)
 
     class Meta:
         model = ProvinceBorder
-        fields = ["id", 'name', 'py', 'reg_id']
+        fields = ["id", 'name', 'py', 'reg_id', 'reg_id_not']

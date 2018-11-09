@@ -81,7 +81,6 @@ class ProvinceBorder(models.Model):
     y = models.FloatField()
     py = models.CharField(max_length=50)
     geom = models.PolygonField(srid=4326)
-    # reg_id = models.CharField(max_length=50, default="")
     reg_id = models.ForeignKey("RegCode", to_field="reg_id", on_delete="SET_NULL")
 
 
